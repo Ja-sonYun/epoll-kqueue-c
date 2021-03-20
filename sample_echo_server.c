@@ -17,8 +17,8 @@ int main(int argc, char *argv[]) {
     int str_len, i;
     char buf[BUF_SIZE];
 
-	epoll(0, MULPLEX_INIT);
-	int	event_cnt;
+    epoll(0, MULPLEX_INIT);
+    int	event_cnt;
 
     if (argc != 2) {
         printf("Usage : %s <port>\n", argv[0]);
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     if (listen(serv_sock, 5) == -1)
         error_handling("listen() error");
 
-	epoll(serv_sock, MULPLEX_CREATE);
+    epoll(serv_sock, MULPLEX_CREATE);
 
     while(1) {
         event_cnt = epoll(0, MULPLEX_GET_SIZE);
