@@ -41,17 +41,17 @@ int main(int argc, char *argv[]) {
         event_cnt = epoll(0, MULPLEX_GET_SIZE);
 
         for (i=0; i<event_cnt; i++) {
-			int fd = epoll(i, MULPLEX_GET);
+	    int fd = epoll(i, MULPLEX_GET);
             if (fd == serv_sock) {
                 adr_sz = sizeof(clnt_adr);
                 clnt_sock= accept(serv_sock, (struct sockaddr*)&clnt_adr, &adr_sz);
-				epoll(clnt_sock, MULPLEX_CREATE);
+		epoll(clnt_sock, MULPLEX_CREATE);
                 printf("connected client: %d \n", clnt_sock);
 
             } else {
                 str_len = read(fd, buf, BUF_SIZE);
                 if (str_len == 0) { // close request!
-					epoll(fd ,MULPLEX_CLOSE);
+	            epoll(fd ,MULPLEX_CLOSE);
                     close(fd);
                     printf("closed client: %d \n", fd);
                 } else {
