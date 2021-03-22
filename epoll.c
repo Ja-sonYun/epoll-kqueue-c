@@ -33,7 +33,7 @@ int epoll(int fd, int flag)
 #endif
 			break;
 
-        case MULPLEX_GET_SIZE:
+        case MULPLEX_WAIT:
 #if defined(__APPLE__)
             return kevent(queue, NULL, 0, event_list, EVENT_SIZE, NULL);
 #elif defined(__linux__) || defined(__unix__)
