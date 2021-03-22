@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     epoll(serv_sock, MULPLEX_CREATE);
 
     while(1) {
-        event_cnt = epoll(0, MULPLEX_GET_SIZE);
+        event_cnt = epoll(0, MULPLEX_WAIT);
 
         for (i=0; i<event_cnt; i++) {
 	    int fd = epoll(i, MULPLEX_GET);
